@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "veam"
+name = "veeam"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
@@ -8,6 +8,8 @@ authors = ["Your Name <you@example.com>"]
 python = "^3.8"
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
+black = "^21.10b0"
+isort = "^5.10.1"
 
 [tool.poetry.dev-dependencies]
 

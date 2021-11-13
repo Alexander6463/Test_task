@@ -1,9 +1,10 @@
 import shutil
-from src.utils import Copyist
-from unittest.mock import Mock
 from pathlib import Path
+from unittest.mock import Mock
 
 import pytest
+
+from src.utils import Copyist
 
 
 @pytest.fixture()
@@ -16,7 +17,8 @@ def create_dirs(tmpdir):
         "dir/file_1.txt",
         "asdf",
         "qqwer",
-        "asdf/file.txt")
+        "asdf/file.txt",
+    )
     for file in files_source:
         tmpdir.mkdir(Path("source") / file)
     return tmpdir, files_source
@@ -27,7 +29,7 @@ def test_get_files_and_dirs(create_dirs):
     base_name, dirs = create_dirs
     instance = Copyist(f"{base_name}/source", f"{base_name}/replica", logger)
     res = instance._get_files_and_dirs()
-    assert sorted((map(str,res[0]))) == sorted(dirs)
+    assert sorted((map(str, res[0]))) == sorted(dirs)
     assert res[1] == set()
 
 

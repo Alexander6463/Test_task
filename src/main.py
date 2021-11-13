@@ -1,7 +1,8 @@
-import click
 import time
-from log import configure_logging
 
+import click
+
+from log import configure_logging
 from utils import Copyist
 
 

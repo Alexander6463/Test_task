@@ -1,7 +1,7 @@
-import shutil
 import os
-from pathlib import Path
+import shutil
 from logging import Logger
+from pathlib import Path
 from typing import List
 
 
@@ -19,14 +19,22 @@ class Copyist:
 
     def __init__(self, catalog_source: str, catalog_replica: str, logger: Logger):
         self.logger = logger
-        if not Path.exists(Path(catalog_source)) or not Path.exists(Path(catalog_replica)):
-            self.logger.error(f"{CatalogExistException} Catalogs {catalog_source} or {catalog_replica} are not exist")
-            raise CatalogExistException(f"Catalogs {catalog_source} or {catalog_replica} are not exist")
+        if not Path.exists(Path(catalog_source)) or not Path.exists(
+            Path(catalog_replica)
+        ):
+            self.logger.error(
+                f"{CatalogExistException} Catalogs {catalog_source} "
+                f"or {catalog_replica} are not exist"
+            )
+            raise CatalogExistException(
+                f"Catalogs {catalog_source} or " f"{catalog_replica} are not exist"
+            )
         self.catalog_source = Path(catalog_source)
         self.catalog_replica = Path(catalog_replica)
 
     def _get_files_and_dirs(self) -> List:
-        """Return list with files in catalog source and catalog replica directories
+        """Return list with files in catalog source
+        and catalog replica directories
 
         :return: list with files in catalog source in index 0 and
          list with files in catalog replica in index 1"""
