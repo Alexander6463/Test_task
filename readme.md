@@ -7,4 +7,8 @@
     • Пути к каталогам, интервал синхронизации и путь к файлу логирования должны задаваться параметрами командной строки при запуске программы.
 
 _Running_
-- Use command: python3 main.py --catalog_source <path to source catalog> --catalog_replica <path to replica catalog> --period <time of synchronization in seconds> --path-log <path where will be saved log file>
+Use command: `python3 main.py --catalog_source <path to source catalog> 
+                             --catalog_replica <path to replica catalog> 
+                             --period <time of synchronization in seconds> 
+                             --path-log <path where will be saved log file>`
+
