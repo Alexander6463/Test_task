@@ -2,8 +2,8 @@ import time
 
 import click
 
-from log import configure_logging
-from utils import Copyist
+from src.log import configure_logging
+from src.utils import Copyist
 
 
 @click.command()
