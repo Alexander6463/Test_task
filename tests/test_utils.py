@@ -11,17 +11,17 @@ from src.utils import Copyist
 def create_dirs(tmpdir):
     tmpdir.mkdir("source")
     tmpdir.mkdir("replica")
-    files_source = (
+    dirs = (
         "dir",
-        "dir/file.txt",
-        "dir/file_1.txt",
-        "asdf",
-        "qqwer",
-        "asdf/file.txt",
+        "dir/file",
+        "dir/file_1",
+        "some_folder",
+        "folder",
+        "some_folder/file",
     )
-    for file in files_source:
-        tmpdir.mkdir(Path("source") / file)
-    return tmpdir, files_source
+    for directory in dirs:
+        tmpdir.mkdir(Path("source") / directory)
+    return tmpdir, dirs
 
 
 def test_get_files_and_dirs(create_dirs):
@@ -47,10 +47,10 @@ def test_delete_object_from_source(create_dirs):
     base_name, dirs = create_dirs
     instance = Copyist(f"{base_name}/source", f"{base_name}/replica", logger)
     instance._create_or_copy_object_from_source()
-    shutil.rmtree(f"{base_name}/source/dir/file.txt")
+    shutil.rmtree(f"{base_name}/source/dir/file")
     instance._delete_objects_from_replica()
     source, replica = instance._get_files_and_dirs()
-    assert f"{base_name}/source/dir/file.txt" not in source
+    assert f"{base_name}/source/dir/file" not in source
     assert source == replica
 
 
