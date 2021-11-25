@@ -32,10 +32,6 @@ class Copyist:
         self.catalog_source = Path(catalog_source)
         self.catalog_replica = Path(catalog_replica)
 
-    @staticmethod
-    def get_modification_date(path_to_file):
-        return os.path.getmtime(path_to_file)
-
     def _get_files_and_dirs(self) -> List:
         """Return list with files in catalog source
         and catalog replica directories
