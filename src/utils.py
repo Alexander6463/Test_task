@@ -44,7 +44,12 @@ class Copyist:
          list with files in catalog replica in index 1"""
         result = []
         for catalog in (self.catalog_source, self.catalog_replica):
-            result.append({file.relative_to(catalog): os.path.getmtime(file) for file in catalog.glob("**/*")})
+            result.append(
+                {
+                    file.relative_to(catalog): os.path.getmtime(file)
+                    for file in catalog.glob("**/*")
+                }
+            )
         return result
 
     def _delete_objects_from_replica(self) -> None:
@@ -78,7 +83,9 @@ class Copyist:
                 if not (self.catalog_source / obj).is_dir():
                     if files_source[obj] > files_replica[obj]:
                         self.logger.info(f"Copy modified file {obj}")
-                        shutil.copy(self.catalog_source / obj, self.catalog_replica / obj)
+                        shutil.copy(
+                            self.catalog_source / obj, self.catalog_replica / obj
+                        )
 
     def match_source_and_replica(self) -> None:
         """Match replica and source folders"""
