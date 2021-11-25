@@ -1,6 +1,7 @@
+from unittest.mock import patch
+
 from src import log
 from src.log import configure_logging
-from unittest.mock import patch
 
 
 @patch.object(log.logging, "FileHandler")
