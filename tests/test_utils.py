@@ -30,7 +30,7 @@ def test_get_files_and_dirs(create_dirs):
     instance = Copyist(f"{base_name}/source", f"{base_name}/replica", logger)
     res = instance._get_files_and_dirs()
     assert sorted((map(str, res[0]))) == sorted(dirs)
-    assert res[1] == set()
+    assert res[1] == {}
 
 
 def test_create_or_copy_from_replica(create_dirs):
@@ -39,7 +39,8 @@ def test_create_or_copy_from_replica(create_dirs):
     instance = Copyist(f"{base_name}/source", f"{base_name}/replica", logger)
     instance._create_or_copy_object_from_source()
     source, replica = instance._get_files_and_dirs()
-    assert source == replica
+    for element_source, element_replica in zip(source, replica):
+        assert element_replica == element_source
 
 
 def test_delete_object_from_source(create_dirs):
@@ -51,7 +52,8 @@ def test_delete_object_from_source(create_dirs):
     instance._delete_objects_from_replica()
     source, replica = instance._get_files_and_dirs()
     assert f"{base_name}/source/dir/file" not in source
-    assert source == replica
+    for element_source, element_replica in zip(source, replica):
+        assert element_replica == element_source
 
 
 def test_match_source_and_replica(create_dirs):
@@ -60,4 +62,5 @@ def test_match_source_and_replica(create_dirs):
     instance = Copyist(f"{base_name}/source", f"{base_name}/replica", logger)
     instance.match_source_and_replica()
     source, replica = instance._get_files_and_dirs()
-    assert source == replica
+    for element_source, element_replica in zip(source, replica):
+        assert element_replica == element_source

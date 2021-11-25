@@ -1,8 +1,8 @@
 from click.testing import CliRunner
 from unittest.mock import patch
 
-from src.main import run
-from src import main
+from main import run
+import main
 
 
 @patch.object(main.Copyist, "__init__")
